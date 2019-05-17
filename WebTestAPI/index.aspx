@@ -13,6 +13,7 @@
                 <asp:ListItem Value="0">Local</asp:ListItem>
                 <asp:ListItem Value="1">Server</asp:ListItem>
             </asp:DropDownList>
+            &nbsp;<asp:CheckBox ID="chkMySql" runat="server" Text="MYSQL" AutoPostBack="true" />
             <br />
             <asp:Label ID="Label1" runat="server" Text="Enter ID Here :"></asp:Label>
             <br />

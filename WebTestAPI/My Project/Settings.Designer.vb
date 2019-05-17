@@ -57,22 +57,40 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\MSSQLSERVER2016;Initial Catalog=counterservice;User id=tawantech;pa"& _ 
-            "ssword=ucrC89I55y;Persist Security Info=false;")>  _
-        Public ReadOnly Property mainConnection() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("Persist security info=True;Integrated Security=SSPI;Initial Catalog=DEVTEST;Data "& _ 
+            "Source=.\DEVTEST")>  _
+        Public ReadOnly Property testConnectionMSSQL() As String
             Get
-                Return CType(Me("mainConnection"),String)
+                Return CType(Me("testConnectionMSSQL"),String)
             End Get
         End Property
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Persist security info=True;Integrated Security=SSPI;Initial Catalog=DEVTEST;Data "& _ 
-            "Source=.\DEVTEST")>  _
-        Public ReadOnly Property testConnection() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\MSSQLSERVER2016;Initial Catalog=bookingdemo;User id=tawantech;passw"& _ 
+            "ord=ucrC89I55y;Persist Security Info=false;")>  _
+        Public ReadOnly Property mainConnectionMSSQL() As String
             Get
-                Return CType(Me("testConnection"),String)
+                Return CType(Me("mainConnectionMSSQL"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;uid=tawanasp;pwd=ucrC89I55y;database=devtest;port=3306")>  _
+        Public ReadOnly Property testConnectionMYSQL() As String
+            Get
+                Return CType(Me("testConnectionMYSQL"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;uid=tawantech;pwd=ucrC89I55y;database=tawan_test;port=3306")>  _
+        Public ReadOnly Property mainConnectionMYSQL() As String
+            Get
+                Return CType(Me("mainConnectionMYSQL"),String)
             End Get
         End Property
     End Class

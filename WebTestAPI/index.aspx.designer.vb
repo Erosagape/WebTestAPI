@@ -32,6 +32,15 @@ Partial Public Class index
     Protected WithEvents cboDatabase As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''chkMySql control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkMySql As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
     '''Label1 control.
     '''</summary>
     '''<remarks>

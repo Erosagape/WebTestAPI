@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports MySql.Data.MySqlClient
+
 Public Class CResult
     Public Sub New()
 
@@ -15,11 +17,25 @@ Public Class CUtil
     Public Sub SetConnect(pConnStr As String)
         m_ConnStr = pConnStr
     End Sub
-    Public Function TestConnect() As CResult
+    Public Function TestConnectMSSQL() As CResult
         Dim result As New CResult
         result.Result = m_ConnStr
         Try
             Using cn As New SqlConnection(m_ConnStr)
+                cn.Open()
+                result.Message = "Connect Completed!"
+            End Using
+        Catch ex As Exception
+            result.IsError = True
+            result.Message = ex.Message
+        End Try
+        Return result
+    End Function
+    Public Function TestConnectMYSQL() As CResult
+        Dim result As New CResult
+        result.Result = m_ConnStr
+        Try
+            Using cn As New MySqlConnection(m_ConnStr)
                 cn.Open()
                 result.Message = "Connect Completed!"
             End Using

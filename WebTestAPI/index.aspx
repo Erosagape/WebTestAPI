@@ -21,8 +21,9 @@
             <br />
             <asp:Button ID="btnFind" runat="server" Text="Find" />
 
-            <br />
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+
+            <br />
 
         </div>
     </form>

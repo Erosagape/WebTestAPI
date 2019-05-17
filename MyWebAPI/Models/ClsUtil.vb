@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Net
 Imports MySql.Data.MySqlClient
 
 Public Class CResult
@@ -17,6 +18,30 @@ Public Class CUtil
     Public Sub SetConnect(pConnStr As String)
         m_ConnStr = pConnStr
     End Sub
+    Public Function GetServerIP() As String
+        Dim hostInfo = Dns.GetHostEntry(Dns.GetHostName())
+        Dim ipAddr = hostInfo.AddressList(0).ToString()
+        Return ipAddr
+    End Function
+    Public Function GetClientIP() As String
+        Return HttpContext.Current.Request.UserHostAddress
+    End Function
+    Public Function GetHostName() As String
+        Return Dns.GetHostName()
+    End Function
+    Public Function IsLocalHost() As Boolean
+        Return HttpContext.Current.Request.IsLocal
+    End Function
+    Public Function GetConnection(dbType As String) As String
+        Dim cnStr As String = ""
+        Select Case dbType.ToUpper()
+            Case "MS"
+                cnStr = If(IsLocalHost(), My.Settings.MSSQLTestConnect, My.Settings.MSSQLMainConnect)
+            Case "MY"
+                cnStr = If(IsLocalHost(), My.Settings.MYSQLTestConnect, My.Settings.MYSQLMainConnect)
+        End Select
+        Return cnStr
+    End Function
     Public Function TestConnectMSSQL() As CResult
         Dim result As New CResult With {
             .Result = m_ConnStr

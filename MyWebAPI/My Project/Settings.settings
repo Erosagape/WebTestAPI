@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="MSSQLMainConnect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=.\MSSQLSERVER2016;Initial Catalog=bookingdemo;User id=tawantech;password=ucrC89I55y;Persist Security Info=false;</Value>
+    </Setting>
+    <Setting Name="MYSQLMainConnect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">server=localhost;uid=tawantech;pwd=ucrC89I55y;database=tawan_test;port=3306</Value>
+    </Setting>
+    <Setting Name="MSSQLTestConnect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Persist security info=True;Integrated Security=SSPI;Initial Catalog=DEVTEST;Data Source=.\DEVTEST</Value>
+    </Setting>
+    <Setting Name="MYSQLTestConnect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">server=localhost;uid=tawanasp;pwd=ucrC89I55y;database=devtest;port=3306</Value>
+    </Setting>
+    <Setting Name="MainDBMS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MS</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

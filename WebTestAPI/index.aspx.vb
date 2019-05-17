@@ -15,4 +15,9 @@ Public Class index
             Label2.Text = ex.Message
         End Try
     End Sub
+
+    Protected Sub cboDatabase_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDatabase.SelectedIndexChanged
+        Dim oConn As New CUtil(If(cboDatabase.SelectedIndex = 0, My.Settings.testConnection, My.Settings.mainConnection))
+        Label2.Text = oConn.TestConnect().Message
+    End Sub
 End Class

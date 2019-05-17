@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:DropDownList ID="cboDatabase" runat="server">
+            <asp:DropDownList ID="cboDatabase" runat="server" AutoPostBack="True">
                 <asp:ListItem Value="0">Local</asp:ListItem>
                 <asp:ListItem Value="1">Server</asp:ListItem>
             </asp:DropDownList>

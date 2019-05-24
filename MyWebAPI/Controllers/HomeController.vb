@@ -16,27 +16,29 @@
         Return Content(New CUtil().GetHostName(), "text/html")
     End Function
     Function GetConnect() As ActionResult
-        Dim msg = "Cannot Get Connection"
         Dim dbms = My.Settings.MainDBMS
         If Not Request.QueryString("DBMS") Is Nothing Then
             dbms = Request.QueryString("DBMS").ToString()
         End If
-        msg = New CUtil().GetConnection(dbms)
+        Dim msg As String = New CUtil().GetConnection(dbms)
         Return Content(msg, "text/html")
     End Function
     Function TestConnect() As ActionResult
-        Dim msg = "Cannot Test Connection"
         Dim dbms = My.Settings.MainDBMS
         If Not Request.QueryString("DBMS") Is Nothing Then
             dbms = Request.QueryString("DBMS").ToString()
         End If
-        Dim cnStr As String = New CUtil().GetConnection(dbms)
-        Select Case dbms.Substring(0, 2).ToLower
-            Case "ms"
-                msg = New CUtil(cnStr).TestConnectMSSQL().Message.ToString()
-            Case "my"
-                msg = New CUtil(cnStr).TestConnectMYSQL().Message.ToString()
-        End Select
+        Dim msg As String = New CUtil(If(dbms.ToLower = "my", DatabaseType.MYSQL, DatabaseType.MSSQL)).TestConnection().Message
         Return Content(msg, "text/html")
+    End Function
+    Function TestSaveData() As ActionResult
+        Dim dbms = My.Settings.MainDBMS
+        If Not Request.QueryString("DBMS") Is Nothing Then
+            dbms = Request.QueryString("DBMS").ToString()
+        End If
+        Dim cnType As Integer = If(dbms.ToLower = "my", DatabaseType.MYSQL, DatabaseType.MSSQL)
+        Dim oData As New clsCitizen(cnType)
+        oData.FindData("3100905271924")
+        Return Content(oData.SaveData(), "text/html")
     End Function
 End Class

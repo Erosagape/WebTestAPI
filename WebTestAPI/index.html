@@ -6,5 +6,23 @@
 </head>
 <body>
     <a href="/index.aspx">Test Connect Table Citizen using web form</a>
+    <br/>
+    <a href="#" id="testAPI1">Test Call API</a>
+    <script type="text/javascript">
+        let func1 = document.getElementById("testAPI1")
+        document.addEventListener("click", () => {
+            fetch('http://devtest.tawanasp.com/api/values')
+                .then((res) => {
+                    if (res.ok) {
+                        alert('complete')
+                    }
+                }).then((data) => 
+                    alert(data.json())
+                ).catch((err)=>
+                    alert('error :' + err.message)
+                )
+            
+        });
+    </script>
 </body>
 </html>

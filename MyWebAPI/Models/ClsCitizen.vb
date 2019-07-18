@@ -131,8 +131,11 @@ Public Class clsCitizen
         Dim sql = m_SQLSelect & pSQLWhere
         Select Case connectType
             Case DatabaseType.MSSQL
-                Dim rd As SqlDataReader = New CUtil(connectType).ReadData(sql, AddressOf LoadData).Result
-                Return ReadData(rd)
+                Using cn As New SqlConnection(New CUtil(DatabaseType.MSSQL).GetConnection())
+                    cn.Open()
+                    Dim rd As SqlDataReader = New SqlCommand(sql, cn).ExecuteReader()
+                    Return ReadData(rd)
+                End Using
             Case DatabaseType.MYSQL
                 Using cn As New MySqlConnection(New CUtil(DatabaseType.MYSQL).GetConnection())
                     cn.Open()

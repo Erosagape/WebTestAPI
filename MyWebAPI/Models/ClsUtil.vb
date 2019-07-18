@@ -111,9 +111,9 @@ Friend Class CUtil
                 Dim rd As SqlDataReader = New SqlCommand(pSQL, cn).ExecuteReader()
                 Return rd
             Catch ex As Exception
+                Return Nothing
             End Try
         End Using
-        Return Nothing
     End Function
     Friend Function GetData(pSQL As String, Optional pDBType As Integer = 0) As CResult
         Dim result As New CResult
@@ -209,23 +209,20 @@ Friend Class CUtil
         If pDbType = 0 Then pDbType = m_ConnType
         Select Case pDbType
             Case DatabaseType.MSSQL
-                Try
-                    Dim rd As SqlDataReader = GetSqlReader(pSQL)
+                Using cn As New SqlConnection(GetConnection(DatabaseType.MSSQL))
+                    cn.Open()
+                    Dim rd As SqlDataReader = New SqlCommand(pSQL, cn).ExecuteReader()
                     result.Result = rd
                     If rd.HasRows Then
                         func(rd)
                     End If
                     result.Message = "OK"
-                Catch ex As Exception
-                    result.IsError = True
-                    result.Message = ex.Message
-                End Try
+                End Using
             Case DatabaseType.MYSQL
                 Try
                     Using cn As New MySqlConnection(GetConnection(DatabaseType.MYSQL))
                         cn.Open()
                         Dim rd As MySqlDataReader = New MySqlCommand(pSQL, cn).ExecuteReader()
-                        result.Result = rd
                         If rd.HasRows Then
                             func(rd)
                         End If
